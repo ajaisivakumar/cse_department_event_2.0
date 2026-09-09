@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>COMFESTA 2K26 | Department of Computer Science Engineering</title>
+<meta name="description" content="COMFESTA 2K26 — the flagship technical symposium of the Department of Computer Science Engineering. Code. Compete. Conquer.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- PRELOADER -->
+<div id="preloader">
+    <div class="pre-grid"></div>
+    <div class="pre-core">
+        <div class="pre-brand">COMFESTA<span>2K26</span></div>
+        <div class="pre-bar-track"><div class="pre-bar-fill" id="preFill"></div></div>
+        <div class="pre-readout"><span id="preText">Compiling</span><span id="prePercent">0</span>%</div>
+    </div>
+</div>
+
+<canvas id="bg-canvas"></canvas>
+<div class="cursor-glow" id="cursorGlow"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- EVENT MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+    <div class="modal-content">
+        <button class="close-modal" onclick="closeModal()">Close</button>
+        <span class="modal-tag" id="modalTag">Technical</span>
+        <h2 id="modalTitle">Event Title</h2>
+        <p class="modal-desc" id="modalDesc">Event description.</p>
+
+        <div class="modal-meta">
+            <div><span>Team size</span><b id="modalTeam">—</b></div>
+            <div><span>Eligibility</span><b id="modalEligibility">—</b></div>
+        </div>
+
+        <h3>Rules</h3>
+        <ul id="modalRules"></ul>
+
+        <h3>Judging criteria</h3>
+        <p id="modalJudging" class="modal-desc"></p>
+
+        <div class="modal-prize" id="modalPrize"></div>
+    </div>
+</div>
+
+<!-- NAV -->
+<nav>
+    <div class="nav-logo">COMFESTA</div>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    <div class="nav-links" id="navLinks">
+        <a href="#home" class="nav-link-item">Home</a>
+        <a href="#about" class="nav-link-item">About</a>
+        <a href="#events" class="nav-link-item">Events</a>
+        <a href="#schedule" class="nav-link-item">Schedule</a>
+        <a href="#register-section" class="nav-link-item">Registration</a>
+        <a href="#guidelines" class="nav-link-item">Guidelines</a>
+        <a href="#coordinators" class="nav-link-item">Coordinators</a>
+        <a href="#venue" class="nav-link-item">Venue</a>
+        <a href="#faq" class="nav-link-item">FAQ</a>
+    </div>
+</nav>
+
+<!-- HERO -->
+<header id="home">
+    <div class="gradient-aurora"></div>
+    <img src="logo.png" alt="Anna University emblem" class="au-logo" data-aos="zoom-in">
+    <p class="venue-line">University College of Engineering, Villupuram</p>
+    <p class="presented-by">Department of Computer Science Engineering presents</p>
+    <h1 class="main-title">COMFESTA</h1>
+    <div class="year-tag">2K26</div>
+    <p class="tagline">Code. <span>Compete.</span> Conquer.</p>
+
+    <div class="timer-container">
+        <div class="timer-label">Countdown to inauguration</div>
+        <div id="timer">00d 00h 00m 00s</div>
+    </div>
+
+    <div class="header-btns">
+        <a href="#register-section" class="reg-btn">Register now</a>
+        <a href="#events" class="explore-btn">Explore events</a>
+    </div>
+
+    <!-- QUICK INFO RIBBON — isometric tab hover -->
+    <ul class="info-ribbon" data-aos="fade-up" data-aos-delay="200">
+        <li class="ribbon-tab" style="--tab-color:#00F5D4"><a href="#register-section"><i class="fa-solid fa-indian-rupee-sign"></i><span>₹200 Online</span></a></li>
+        <li class="ribbon-tab" style="--tab-color:#7B2CBF"><a href="#events"><i class="fa-solid fa-layer-group"></i><span>8 Events</span></a></li>
+        <li class="ribbon-tab" style="--tab-color:#FF4D8D"><a href="#prize-pool"><i class="fa-solid fa-trophy"></i><span>₹25,000 Pool</span></a></li>
+        <li class="ribbon-tab" style="--tab-color:#00F5D4"><a href="#venue"><i class="fa-solid fa-location-dot"></i><span>UCEV Campus</span></a></li>
+    </ul>
+</header>
+
+<div class="container">
+
+    <!-- ABOUT -->
+    <div id="about" class="section-pad">
+        <div class="section-title" data-aos="fade-up">About COMFESTA</div>
+        <p class="about-text" data-aos="fade-up">
+            COMFESTA 2K26 is the flagship technical symposium of the <b>Department of Computer Science Engineering</b>,
+            built for students who think in code and build in the open. Across a single day, the department turns into
+            a sandbox for innovation — where research meets rapid prototyping, algorithms meet artificial intelligence,
+            and quiet coders get a stage. From high-stakes coding contests to AI-assisted builds and campus-wide puzzle
+            hunts, COMFESTA is where technology meets talent, and collaboration outpaces competition.
+        </p>
+        <div class="about-pills" data-aos="fade-up">
+            <span>Innovation</span><span>AI &amp; Emerging Tech</span><span>Competitive Coding</span>
+            <span>Creativity</span><span>Networking</span><span>Student Collaboration</span>
+        </div>
+    </div>
+
+    <!-- SCHEDULE -->
+    <div id="schedule" class="section-pad">
+        <div class="section-title" data-aos="fade-up">Event schedule</div>
+        <div class="schedule-list" data-aos="fade-up">
+            <div class="schedule-item"><div class="schedule-time">09:00 AM</div><div class="schedule-event">Inauguration ceremony</div></div>
+            <div class="schedule-item"><div class="schedule-time">10:00 AM</div><div class="schedule-event">Technical events begin</div></div>
+            <div class="schedule-item"><div class="schedule-time">12:30 PM</div><div class="schedule-event">Lunch break</div></div>
+            <div class="schedule-item"><div class="schedule-time">01:30 PM</div><div class="schedule-event">Non-technical events begin</div></div>
+            <div class="schedule-item"><div class="schedule-time">03:30 PM</div><div class="schedule-event">Final rounds</div></div>
+            <div class="schedule-item"><div class="schedule-time">04:30 PM</div><div class="schedule-event">Prize distribution &amp; valedictory</div></div>
+        </div>
+    </div>
+
+    <!-- TECHNICAL EVENTS -->
+    <div id="events" class="section-pad section-pad-tight">
+        <div class="section-title" data-aos="fade-up">Technical events</div>
+    </div>
+    <div class="grid">
+
+        <div class="card" data-aos="fade-up">
+            <div class="card-banner banner-1"><span class="icon-orb"><svg viewBox="0 0 48 48"><path d="M8 6h32v6H8zM8 16h32M8 24h20M8 32h24M8 40h16" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg></span></div>
+            <div class="card-content">
+                <span class="card-kicker">Technical</span>
+                <h3>Paper Presentation</h3>
+                <p>Present innovative ideas, research findings, and upcoming technologies in computer science.</p>
+                <span class="prize-tag">Cash + Certificate</span>
+                <div class="btn-group"><button class="learn-btn" onclick="openModal('paper')">Rules</button></div>
+            </div>
+        </div>
+
+        <div class="card" data-aos="fade-up" data-aos-delay="100">
+            <div class="card-banner banner-2"><span class="icon-orb"><svg viewBox="0 0 48 48"><path d="M24 6l16 8-16 8-16-8z" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linejoin="round"/><path d="M12 20v10l12 6 12-6V20M6 14v10" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+            <div class="card-content">
+                <span class="card-kicker">Technical</span>
+                <h3>Auction Coding Contest</h3>
+                <p>Bid wisely for problems, then solve coding challenges under strategic constraints.</p>
+                <span class="prize-tag">Cash + Certificate</span>
+                <div class="btn-group"><button class="learn-btn" onclick="openModal('auction')">Rules</button></div>
+            </div>
+        </div>
+
+        <div class="card" data-aos="fade-up" data-aos-delay="200">
+            <div class="card-banner banner-3"><span class="icon-orb"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="7" stroke="currentColor" stroke-width="2.5" fill="none"/><path d="M24 4v8M24 36v8M44 24h-8M12 24H4M37.5 10.5l-5.6 5.6M16.1 31.9l-5.6 5.6M37.5 37.5l-5.6-5.6M16.1 16.1l-5.6-5.6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></span></div>
+            <div class="card-content">
+                <span class="card-kicker">Technical</span>
+                <h3>AI Vibe Coding</h3>
+                <p>Build creative software solutions using modern AI tools and prompt engineering techniques.</p>
+                <span class="prize-tag">Cash + Certificate</span>
+                <div class="btn-group"><button class="learn-btn" onclick="openModal('vibe')">Rules</button></div>
+            </div>
+        </div>
+
+        <div class="card" data-aos="fade-up" data-aos-delay="300">
+            <div class="card-banner banner-4"><span class="icon-orb"><svg viewBox="0 0 48 48"><rect x="7" y="7" width="12" height="12" rx="2" stroke="currentColor" stroke-width="2.5" fill="none"/><rect x="29" y="7" width="12" height="12" rx="2" stroke="currentColor" stroke-width="2.5" fill="none"/><rect x="7" y="29" width="12" height="12" rx="2" stroke="currentColor" stroke-width="2.5" fill="none"/><path d="M29 29h5v5h-5zM40 29v12h-6M34 40h6" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg></span></div>
+            <div class="card-content">
+                <span class="card-kicker">Technical</span>
+                <h3>QR Decrypt Hunt</h3>
+                <p>Decode clues, solve logical puzzles, and crack QR-based challenges across campus.</p>
+                <span class="prize-tag">Cash + Certificate</span>
+                <div class="btn-group"><button class="learn-btn" onclick="openModal('qr')">Rules</button></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- NON-TECHNICAL EVENTS -->
+    <div class="section-title section-title-tight" data-aos="fade-up">Non-technical events</div>
+    <div class="grid">
+
+        <div class="card" data-aos="fade-up">
+            <div class="card-banner banner-5"><span class="icon-orb"><svg viewBox="0 0 48 48"><rect x="5" y="9" width="38" height="26" rx="3" stroke="currentColor" stroke-width="2.5" fill="none"/><circle cx="16" cy="20" r="4" stroke="currentColor" stroke-width="2.5" fill="none"/><path d="M8 30l8-7 6 5 8-9 10 11" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+            <div class="card-content">
+                <span class="card-kicker">Non-technical</span>
+                <h3>Image Finding</h3>
+                <p>Identify hidden patterns and solve visual challenges under time pressure.</p>
+                <span class="prize-tag">Prizes + Certificate</span>
+                <div class="btn-group"><button class="learn-btn" onclick="openModal('image')">Rules</button></div>
+            </div>
+        </div>
+
+        <div class="card" data-aos="fade-up" data-aos-delay="100">
+            <div class="card-banner banner-6"><span class="icon-orb"><svg viewBox="0 0 48 48"><circle cx="24" cy="10" r="5" stroke="currentColor" stroke-width="2.5" fill="none"/><path d="M24 15v14M16 22l8 7 8-7M14 40l10-9M34 40l-10-9" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+            <div class="card-content">
+                <span class="card-kicker">Non-technical</span>
+                <h3>Dumb Charades</h3>
+                <p>Act, guess, and compete in an entertaining communication challenge.</p>
+                <span class="prize-tag">Prizes + Certificate</span>
+                <div class="btn-group"><button class="learn-btn" onclick="openModal('charades')">Rules</button></div>
+            </div>
+        </div>
+
+        <div class="card" data-aos="fade-up" data-aos-delay="200">
+            <div class="card-banner banner-7"><span class="icon-orb"><svg viewBox="0 0 48 48"><rect x="6" y="16" width="36" height="18" rx="6" stroke="currentColor" stroke-width="2.5" fill="none"/><circle cx="17" cy="25" r="2.4" fill="currentColor"/><circle cx="24" cy="25" r="2.4" fill="currentColor"/><path d="M31 21v8M35 25h-4" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></span></div>
+            <div class="card-content">
+                <span class="card-kicker">Non-technical</span>
+                <h3>Gaming Arena</h3>
+                <p>High-intensity Free Fire battle competition where strategy and teamwork decide the winner.</p>
+                <span class="prize-tag">Prizes + Certificate</span>
+                <div class="btn-group"><button class="learn-btn" onclick="openModal('gaming')">Rules</button></div>
+            </div>
+        </div>
+
+        <div class="card" data-aos="fade-up" data-aos-delay="300">
+            <div class="card-banner banner-8"><span class="icon-orb"><svg viewBox="0 0 48 48"><rect x="6" y="12" width="36" height="24" rx="3" stroke="currentColor" stroke-width="2.5" fill="none"/><path d="M13 12V8h22v4M18 42h12M24 36v6" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round"/><path d="M14 24h20M14 29h12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></span></div>
+            <div class="card-content">
+                <span class="card-kicker">Non-technical</span>
+                <h3>Ads On Spot</h3>
+                <p>Create spontaneous advertisements and impress the judges with creativity.</p>
+                <span class="prize-tag">Prizes + Certificate</span>
+                <div class="btn-group"><button class="learn-btn" onclick="openModal('ads')">Rules</button></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PRIZE POOL -->
+    <div id="prize-pool" class="section-pad" style="text-align:center;">
+        <div class="section-title" data-aos="fade-up">Grand prize pool</div>
+        <div class="prize-pool-card" data-aos="zoom-in">
+            <h2>₹25,000</h2>
+            <p>Total cash prizes &amp; goodies across all events</p>
+        </div>
+    </div>
+
+    <!-- REGISTRATION WORKFLOW -->
+    <div id="how-it-works" class="section-pad">
+        <div class="section-title" data-aos="fade-up">How registration works</div>
+        <div class="flow-grid" data-aos="fade-up">
+            <div class="flow-step">
+                <div class="flow-num">1</div>
+                <h4>Submit the form</h4>
+                <p>Fill in your details and chosen events through the Google Form.</p>
+            </div>
+            <div class="flow-step">
+                <div class="flow-num">2</div>
+                <h4>Get your QR code</h4>
+                <p>A unique QR code is generated, carrying your name, college, email, phone, events, registration ID and payment status.</p>
+            </div>
+            <div class="flow-step">
+                <div class="flow-num">3</div>
+                <h4>Check your inbox</h4>
+                <p>The QR code, event details and your registration ID arrive by email as confirmation.</p>
+            </div>
+            <div class="flow-step">
+                <div class="flow-num">4</div>
+                <h4>Scan-in at the venue</h4>
+                <p>Coordinators scan your QR at the entry desk — your details appear instantly and attendance is recorded.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- GUIDELINES -->
+    <div id="guidelines" class="section-pad">
+        <div class="section-title" data-aos="fade-up">Rules &amp; guidelines</div>
+        <p class="section-sub" data-aos="fade-up">Please read carefully before you register</p>
+
+        <div class="rules-wrapper" data-aos="fade-up">
+            <div class="rules-block">
+                <h3><span class="rule-ico">👥</span> Eligibility &amp; teams</h3>
+                <ul class="rules-list-ui">
+                    <li>Open to UG and PG students from all recognized engineering institutions.</li>
+                    <li>College ID card is mandatory at the venue.</li>
+                    <li>Team members may belong to the same college or different colleges.</li>
+                </ul>
+            </div>
+            <div class="rules-block">
+                <h3><span class="rule-ico">📋</span> Event conduct</h3>
+                <ul class="rules-list-ui">
+                    <li><b>Punctuality:</b> Follow event timings strictly; latecomers may forfeit their slot.</li>
+                    <li><b>Discipline:</b> Maintain professional conduct and respect the judges' decisions.</li>
+                    <li><b>Recognition:</b> Certificates are issued to all registered participants.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="judging-header" data-aos="fade-up">
+            <span class="rule-ico">🏆</span><h3>Symposium judging criteria</h3>
+        </div>
+        <div class="judging-grid" data-aos="fade-up">
+            <div class="judging-card"><span class="pts-badge">Weighted</span><h4>Innovation &amp; creativity</h4><p>Originality of the idea and uniqueness of the technical approach.</p></div>
+            <div class="judging-card"><span class="pts-badge">Weighted</span><h4>Technical depth</h4><p>Knowledge of core concepts and quality of implementation.</p></div>
+            <div class="judging-card"><span class="pts-badge">Weighted</span><h4>Presentation</h4><p>Communication skills, clarity, and time management.</p></div>
+        </div>
+    </div>
+
+    <!-- REGISTRATION -->
+    <div id="register-section" class="section-pad">
+        <div class="section-title" data-aos="fade-up">Registration</div>
+        <div class="reg-wrapper" data-aos="fade-up">
+            <div class="reg-info">
+                <h2>Save your spot</h2>
+                <span class="deadline-text">Venue: University College of Engineering, Villupuram</span>
+                <span class="event-date-text">Fee: ₹200 online · ₹250 spot registration</span>
+                <p class="reg-copy">Register in advance to lock in the lower fee, or walk in on the day — spot registration stays open subject to seat availability.</p>
+                <div class="reg-feature"><span class="feat-ico teal">✔</span><span>Simple online or offline registration</span></div>
+                <div class="reg-feature"><span class="feat-ico pink">👥</span><span>Team registration where the event allows it</span></div>
+                <div class="reg-feature"><span class="feat-ico purple">💳</span><span>₹200 per person online · ₹250 at the venue</span></div>
+                <button class="reg-btn" onclick="openReg()">Register now →</button>
+            </div>
+            <div class="reg-card-ui">
+                <span class="status-badge">Open</span>
+                <div class="reg-card-brand">COMFESTA 2K26</div>
+                <div class="days-left" id="daysLeft">--</div>
+                <div class="days-label">Days left to register</div>
+                <div class="percent-bar"><div class="percent-fill"></div></div>
+                <div class="percent-caption">Registration window status</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- COORDINATORS -->
+    <div id="coordinators" class="section-pad">
+        <div class="section-title" data-aos="fade-up">Organizing committee</div>
+        <div class="contact-grid">
+            <div class="contact-card" data-aos="fade-right">
+                <h4>Faculty coordinators</h4>
+                <p>Dr. A. Kalaiselvi</p><p class="contact-phone">📞 +91 90000 11111</p>
+                <p>Dr. R. Balamurugan</p><p class="contact-phone">📞 +91 90000 22222</p>
+                <p class="contact-dept">Department of Computer Science Engineering</p>
+            </div>
+            <div class="contact-card" data-aos="fade-left">
+                <h4>Student organizers</h4>
+                <p>Divya R</p><p class="contact-phone">📞 +91 90000 33333</p>
+                <p>Karthik S</p><p class="contact-phone">📞 +91 90000 44444</p>
+                <p class="contact-email">comfesta2k26@gmail.com</p>
+            </div>
+        </div>
+
+        <div class="section-title section-title-tight" data-aos="fade-up">Event coordinators</div>
+        <div class="contact-grid">
+            <div class="contact-card" data-aos="fade-right">
+                <h4>Technical events</h4>
+                <p class="contact-role">Paper Presentation &amp; QR Decrypt Hunt</p>
+                <pre>R. Manoj  📞 90000 55555</pre>
+                <p class="contact-role">Auction Coding &amp; AI Vibe Coding</p>
+                <pre>S. Srinivasan  📞 90000 66666</pre>
+            </div>
+            <div class="contact-card" data-aos="fade-left">
+                <h4>Non-technical events</h4>
+                <p class="contact-role">Image Finding &amp; Dumb Charades</p>
+                <pre>Priyanka M  📞 90000 77777</pre>
+                <p class="contact-role">Gaming Arena &amp; Ads On Spot</p>
+                <pre>Arun Kumar T  📞 90000 88888</pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- VENUE -->
+    <div id="venue" class="section-pad">
+        <div class="section-title" data-aos="fade-up">Venue: University College of Engineering, Villupuram</div>
+        <div class="venue-info-grid" data-aos="fade-up">
+            <div class="venue-info-card">
+                <h4>Getting there</h4>
+                <p>The campus is well connected by road from Villupuram town, roughly 15 minutes from Villupuram Junction railway station.</p>
+            </div>
+            <div class="venue-info-card">
+                <h4>On arrival</h4>
+                <p>Head to the registration desk near the main block with your college ID and QR code for a quick check-in.</p>
+            </div>
+        </div>
+        <div class="map-wrapper" data-aos="zoom-in">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d993.6249080899889!2d79.51232084716922!3d11.950605120453123!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5356d91e42871f%3A0xc43a95c77c96be61!2sUniversity%20College%20of%20Engineering%20Villupuram!5e1!3m2!1sen!2sin!4v1771280269365!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </div>
+
+    <!-- FAQ -->
+    <div id="faq" class="section-pad">
+        <div class="section-title" data-aos="fade-up">Frequently asked questions</div>
+        <div class="faq-container" data-aos="fade-up">
+            <div class="faq-item"><input type="checkbox" id="faq1" class="faq-input"><label for="faq1" class="faq-label">Who can participate in COMFESTA 2K26?</label><div class="faq-content">Open to all UG and PG students from any recognized engineering college.</div></div>
+            <div class="faq-item"><input type="checkbox" id="faq2" class="faq-input"><label for="faq2" class="faq-label">How do I register?</label><div class="faq-content">Fill the Google Form linked in the Registration section and complete the payment.</div></div>
+            <div class="faq-item"><input type="checkbox" id="faq3" class="faq-input"><label for="faq3" class="faq-label">What is the registration fee?</label><div class="faq-content">₹200 per person for online registration, and ₹250 for spot registration at the venue.</div></div>
+            <div class="faq-item"><input type="checkbox" id="faq4" class="faq-input"><label for="faq4" class="faq-label">Can I take part in more than one event?</label><div class="faq-content">Yes, as long as your chosen events don't overlap on the schedule.</div></div>
+            <div class="faq-item"><input type="checkbox" id="faq5" class="faq-input"><label for="faq5" class="faq-label">Will I receive a certificate?</label><div class="faq-content">Every registered participant receives a certificate; winners additionally receive cash prizes.</div></div>
+            <div class="faq-item"><input type="checkbox" id="faq6" class="faq-input"><label for="faq6" class="faq-label">How will I get my registration confirmation?</label><div class="faq-content">A QR code carrying your registration details is generated and emailed to you right after you submit the form.</div></div>
+            <div class="faq-item"><input type="checkbox" id="faq7" class="faq-input"><label for="faq7" class="faq-label">What should I carry on the day of the event?</label><div class="faq-content">Your college ID card and your QR code, either printed or on your phone.</div></div>
+            <div class="faq-item"><input type="checkbox" id="faq8" class="faq-input"><label for="faq8" class="faq-label">Is accommodation available?</label><div class="faq-content">Details on accommodation will be shared closer to the event date — check back or contact the coordinators.</div></div>
+            <div class="faq-item"><input type="checkbox" id="faq9" class="faq-input"><label for="faq9" class="faq-label">Are spot registrations allowed?</label><div class="faq-content">Yes, subject to seat availability, at the spot registration fee of ₹250.</div></div>
+            <div class="faq-item"><input type="checkbox" id="faq10" class="faq-input"><label for="faq10" class="faq-label">Who do I contact for doubts?</label><div class="faq-content">Reach out to any of the coordinators listed in the Coordinators section above.</div></div>
+        </div>
+    </div>
+
+</div>
+
+    <!-- QUICK CONTACT DOCK -->
+    <div class="section-pad" style="text-align:center;">
+        <div class="section-title section-title-tight" data-aos="fade-up">Reach us instantly</div>
+        <ul class="contact-dock" data-aos="zoom-in">
+            <li style="--dot-color:#00F5D4"><a href="tel:+919000055555" aria-label="Call"><i class="fa-solid fa-phone"></i></a></li>
+            <li style="--dot-color:#7B2CBF"><a href="mailto:comfesta2k26@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a></li>
+            <li style="--dot-color:#FF4D8D"><a href="#venue" aria-label="Venue"><i class="fa-solid fa-map-location-dot"></i></a></li>
+            <li style="--dot-color:#00F5D4"><a href="#faq" aria-label="FAQ"><i class="fa-solid fa-circle-question"></i></a></li>
+        </ul>
+    </div>
+
+<button id="backToTop" onclick="scrollToTop()" aria-label="Back to top">↑</button>
+<a href="#register-section" id="fabRegister" aria-label="Register now">Register</a>
+
+<footer>
+    <div class="footer-brand">COMFESTA 2K26</div>
+    <div class="footer-copy">© 2026 COMFESTA · Department of Computer Science Engineering</div>
+</footer>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
