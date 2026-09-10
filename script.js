@@ -217,7 +217,6 @@ window.addEventListener('load', () => {
     }, intervalTime);
 });
 
-document.addEventListener('contextmenu', (e) => e.preventDefault());
 
 /* ================= CURSOR RING + SPARKLE TRAIL (fine pointers only) ================= */
 const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
